@@ -1,1 +1,2760 @@
-[object Object]
+{
+	"info": {
+		"_postman_id": "3cf3be52-b8b7-411e-b97a-08d35f2e52cf",
+		"name": "Bynfor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27000501"
+	},
+	"item": [
+		{
+			"name": "Block",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Add a block",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"pm.environment.set(\"userId\",jsonData.data.UserId);",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Status String is OK\", function () {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"pm.test(\"Full Response Body Check\", function () {",
+											"    pm.expect(jsonData).to.be.an(\"object\");",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");",
+											"    pm.expect(jsonData.data.Blocks).to.be.an(\"array\");",
+											"    pm.expect(jsonData.data.UserId).to.be.an(\"number\");",
+											"    pm.expect(jsonData.data.__v).to.be.an(\"number\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Blocks\": [\"13846\"],\n\t\"UserId\": 1691\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/block",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"block"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get all blocks",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"pm.environment.set(\"BynforCustomerId\", jsonData.data.Blocks[0].id);",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Status String is OK\", function () {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"pm.test(\"Full Response Body Check\", function () {",
+											"    pm.expect(jsonData).to.be.an(\"object\");",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");",
+											"    pm.expect(jsonData.data.Blocks).to.be.an(\"array\");",
+											"    pm.expect(jsonData.data.UserId).to.be.an(\"number\");",
+											"    pm.expect(jsonData.data.__v).to.be.an(\"number\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/block/{{userId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"block",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Remove a block",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data.Blocks).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data.UserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.__v).to.be.an(\"number\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"UserId\":1691\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/block/{{BynforCustomerId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"block",
+										"{{BynforCustomerId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Favourite",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Add Favourite",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.Favourites).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data.Favourites[0]).to.be.an(\"string\");\r",
+											"    pm.expect(jsonData.data.Favourites[4]).to.be.an(\"string\");\r",
+											"    pm.expect(jsonData.data.Favourites[1]).to.be.an(\"string\");\r",
+											"    pm.expect(jsonData.data._id).to.be.an(\"string\");\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");\r",
+											"     pm.expect(jsonData.data.updatedAt).to.be.an(\"String\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"Favourites\": [\"13846\"],\r\n\t\"UserId\": 1691\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/favourite",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"favourite"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Remove Favourite",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"UserId\": 1691\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/favourite/{{BynforCustomerId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"favourite",
+										"{{BynforCustomerId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Invisible",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Create and remove Invisible",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data.isChatInvisible).to.be.an(\"Boolean\");\r",
+											"    pm.expect(jsonData.data.__v).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.UserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.emojis).to.be.an(\"String\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"UserId\": 1691,\r\n\t\"isChatInvisible\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/chatInvisible",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"chatInvisible"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Invisible by userIds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data[0].createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data[0].isChatInvisible).to.be.an(\"Boolean\");\r",
+											"    pm.expect(jsonData.data[0].__v).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[0].UserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[1].createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data[1].isChatInvisible).to.be.an(\"Boolean\");\r",
+											"    pm.expect(jsonData.data[1].__v).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[1].UserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[2].createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data[2].isChatInvisible).to.be.an(\"Boolean\");\r",
+											"    pm.expect(jsonData.data[2].__v).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[3].UserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[3].createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data[3].isChatInvisible).to.be.an(\"Boolean\");\r",
+											"    pm.expect(jsonData.data[3].__v).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data[3].UserId).to.be.an(\"number\");\r",
+											"  \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[3, 3263, 8894, 11955, 5151, 1691, 13838, 6, 3287, 4612, 9, 8340, 8339, 3475, 13879]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/chatInvisible/List",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"chatInvisible",
+										"List"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Remark",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Create remark",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data.users).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data._id).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data.users[0]).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.data.users[0].userId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.users[1].name).to.be.an(\"String\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"createdBy\": 1691,\r\n\t\"userId\": 3,\r\n\t\"name\": \"Customer One12\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/remark",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"remark"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Create status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"String\");\r",
+											"    pm.expect(jsonData.data.Stats).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data.displayMoment).to.be.an(\"Boolean\");\r",
+											"    pm.expect(jsonData.data.UserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.__v).to.be.an(\"number\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"Stats\": [\r\n\t\t\"https://sftp.bynfor.com/bynfor/auth/user_profiles/375344_original_343495defaultavatar.webp\"\r\n\t],\r\n\t\"UserId\": 1691,\r\n\t\"sType\": 1,\r\n\t\"sMessage\": \" test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/stat",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"stat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Display moment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('Boolean');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"userId\": 1691,\r\n\t\"displayMoment\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/stat/displayMoment",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"stat",
+										"displayMoment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Collapse chat",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.status).to.be.a('number');\r",
+											"    pm.expect(jsonData.message).to.be.an('string');\r",
+											"    pm.expect(jsonData.data).to.be.a('boolean')\r",
+											"    pm.expect(jsonData.remainingTime).to.be.a('null')\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"collapseChat\":true}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dev-gateway-api.bynfor.com/auth/user/collapse-chat",
+									"protocol": "https",
+									"host": [
+										"dev-gateway-api",
+										"bynfor",
+										"com"
+									],
+									"path": [
+										"auth",
+										"user",
+										"collapse-chat"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.Stats).to.be.an('array');\r",
+											"    pm.expect(jsonData.data._id).to.be.an('string');\r",
+											"    pm.expect(jsonData.data.Established).to.be.an('Boolean');\r",
+											"    pm.expect(jsonData.data.updatedAt).to.be.an('String');\r",
+											"    pm.expect(jsonData.data.__v).to.be.an('number');\r",
+											"    pm.expect(jsonData.data.notPhone).to.be.an('Boolean');\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/stat/{{userId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"stat",
+										"{{userId}}"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Get all notifications",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('array');\r",
+											"     \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"userName\",\"bynfor2000\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"groupIds\": [\"62ddfffa380fd55f444edff5\", \"64b050f2437f865495867ff0\", \"62dd5289f6a156d5282a232d\", \"6486adb7268053f17b54c339\", \"64b44511437f8614d8b5267c\", \"62da2603839ac5d0a9661536\", \"61db0cc51b076805f2518083\", \"639a423b1a300cc1814dd1a7\", \"63764d3a9aed77be0139d4d9\", \"648676ed268053c3b653bdd2\", \"62dfb7a5abf1e60add77de1a\", \"62dd6edc380fd524d549cbfd\", \"6466edc1c78d8c6aab9b17d9\", \"63e331a156efe1389a97f4ef\", \"629787ceb0fe9f97f1212247\", \"63c67261f168d60f4ef29a38\", \"639ad255cf338642f490fad0\", \"63575c583f18e35f4335f65a\", \"636329c5bde36c10d6fef085\", \"61deede6c926c91ea5c5a051\", \"6346a84a417935c120a70296\", \"63497c5b417935564cbee949\", \"63446a9441793546eb8e437e\", \"63430bf1c87e9d05c560c012\", \"62dd98c1380fd5f8b24d3fb2\", \"617593bef575d204a419f23a\", \"61758923f575d2225b193f51\", \"631b4a7c6aadb2c8a2e46fa5\", \"611436474fe82b42be746555\", \"62da1b51839ac55e1765d80c\", \"62c5db957501dfd00e12602e\", \"62d4110d839ac5394b3dc792\", \"62d262a26aae0380be1c6466\", \"62d032c78ca639151c36a5f7\", \"628141770223b5e9ff88a6ce\", \"61707a7f17a41f3a56410b69\", \"628f91ae0223b51263d16274\", \"60e70533bae48f1711fdd125\", \"61bcf4fa40e77d5d3495713f\", \"6152e6793b78cb5b96730e15\", \"6202780143327e41d937cd51\", \"6127ba2bc1df90067bb3897f\", \"61352056bb289d696b8eacfa\", \"614bf1d06b8ee218eb6fc83d\", \"6196aa0d1fe9e1239cfb954c\", \"615a01fe499ff371aeecd678\", \"61820f90ea99e0653b65fec0\", \"615a0314499ff3ffa4ed2120\", \"61418eee06581e5294157496\", \"60f1a9347a4076695074ec29\", \"6137db182000f77a4ed68505\", \"60df0ac41d6090da438f5f54\", \"60f1716f7a4076647074eb99\", \"612c4a709dae19dbb75b222b\", \"61351e34bb289d6a028e45e3\", \"60e465d4cf6c0203edb405f5\", \"60e6d0345d30641256ab77ab\", \"60dc85561d609034968f5e7d\", \"6128f3c4a3c1fb3c188ed0ba\", \"60db48a0465150dd6ca23807\", \"60ebf48c876bad5a9f845e3d\", \"60e48244cf6c024d11b40601\", \"60dde2231d609060ac8f5ef7\", \"64869ec426805355f654b0b2\", \"64869bd72680536dbd549063\", \"63e2cc5d56efe1d05995cffb\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/allNotifications/paging/{{userId}}/{{userName}}?pageNumber=1&pageSize=20&documentDays=7",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"allNotifications",
+										"paging",
+										"{{userId}}",
+										"{{userName}}"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "documentDays",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count unread messages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('number');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"groupIds\": [\"62ddfffa380fd55f444edff5\", \"64b050f2437f865495867ff0\", \"62dd5289f6a156d5282a232d\", \"6486adb7268053f17b54c339\", \"64b44511437f8614d8b5267c\", \"62da2603839ac5d0a9661536\", \"61db0cc51b076805f2518083\", \"639a423b1a300cc1814dd1a7\", \"63764d3a9aed77be0139d4d9\", \"648676ed268053c3b653bdd2\", \"62dfb7a5abf1e60add77de1a\", \"62dd6edc380fd524d549cbfd\", \"6466edc1c78d8c6aab9b17d9\", \"63e331a156efe1389a97f4ef\", \"629787ceb0fe9f97f1212247\", \"63c67261f168d60f4ef29a38\", \"639ad255cf338642f490fad0\", \"63575c583f18e35f4335f65a\", \"636329c5bde36c10d6fef085\", \"61deede6c926c91ea5c5a051\", \"6346a84a417935c120a70296\", \"63497c5b417935564cbee949\", \"63446a9441793546eb8e437e\", \"63430bf1c87e9d05c560c012\", \"62dd98c1380fd5f8b24d3fb2\", \"617593bef575d204a419f23a\", \"61758923f575d2225b193f51\", \"631b4a7c6aadb2c8a2e46fa5\", \"611436474fe82b42be746555\", \"62da1b51839ac55e1765d80c\", \"62c5db957501dfd00e12602e\", \"62d4110d839ac5394b3dc792\", \"62d262a26aae0380be1c6466\", \"62d032c78ca639151c36a5f7\", \"628141770223b5e9ff88a6ce\", \"61707a7f17a41f3a56410b69\", \"628f91ae0223b51263d16274\", \"60e70533bae48f1711fdd125\", \"61bcf4fa40e77d5d3495713f\", \"6152e6793b78cb5b96730e15\", \"6202780143327e41d937cd51\", \"6127ba2bc1df90067bb3897f\", \"61352056bb289d696b8eacfa\", \"614bf1d06b8ee218eb6fc83d\", \"6196aa0d1fe9e1239cfb954c\", \"615a01fe499ff371aeecd678\", \"61820f90ea99e0653b65fec0\", \"615a0314499ff3ffa4ed2120\", \"61418eee06581e5294157496\", \"60f1a9347a4076695074ec29\", \"6137db182000f77a4ed68505\", \"60df0ac41d6090da438f5f54\", \"60f1716f7a4076647074eb99\", \"612c4a709dae19dbb75b222b\", \"61351e34bb289d6a028e45e3\", \"60e465d4cf6c0203edb405f5\", \"60e6d0345d30641256ab77ab\", \"60dc85561d609034968f5e7d\", \"6128f3c4a3c1fb3c188ed0ba\", \"60db48a0465150dd6ca23807\", \"60ebf48c876bad5a9f845e3d\", \"60e48244cf6c024d11b40601\", \"60dde2231d609060ac8f5ef7\", \"64869ec426805355f654b0b2\", \"64869bd72680536dbd549063\", \"63e2cc5d56efe1d05995cffb\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/allNotifications/count-unread/{{userId}}/{{userName}}?pageNumber=1&pageSize=20&documentDays=7",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"allNotifications",
+										"count-unread",
+										"{{userId}}",
+										"{{userName}}"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "documentDays",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mute and unmute",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.UserId).to.be.an('number');\r",
+											"    pm.expect(jsonData.data._id).to.be.an('String');\r",
+											"    pm.expect(jsonData.data.isMuteUnmute).to.be.an('Boolean');\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an('String');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"UserId\": 1691,\r\n\t\"isMuteUnmute\": true,\r\n\t\"isMuteUnmuteGroup\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/notification",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Read all messages on notificaiton",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/updateNotificationsRead/{{userId}}/{{userName}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"updateNotificationsRead",
+										"{{userId}}",
+										"{{userName}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get all conversations",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('array');\r",
+											"    pm.expect(jsonData.data[0].id).to.be.an('number');\r",
+											"    pm.expect(jsonData.data[0].firstName).to.be.an('String');\r",
+											"    pm.expect(jsonData.data[0].isGroup).to.be.an('Boolean'); \r",
+											"    pm.expect(jsonData.data[1].id).to.be.an('number');\r",
+											"    pm.expect(jsonData.data[1].firstName).to.be.an('String');\r",
+											"    pm.expect(jsonData.data[1].isGroup).to.be.an('Boolean');\r",
+											"     pm.expect(jsonData.data[1].members).to.be.an('array');\r",
+											"    pm.expect(jsonData.data[2].id).to.be.an('number');\r",
+											"    pm.expect(jsonData.data[2].firstName).to.be.an('String');\r",
+											"    pm.expect(jsonData.data[2].isGroup).to.be.an('Boolean');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/user/user-chat-menu/{{userId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"user",
+										"user-chat-menu",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user information",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.status).to.be.a('number');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.id).to.be.an('number');\r",
+											"    pm.expect(jsonData.data.email).to.be.an('String');\r",
+											"    pm.expect(jsonData.data.phoneConfirmed).to.be.null;\r",
+											"    pm.expect(jsonData.data.wallet).to.be.an('number');\r",
+											"    pm.expect(jsonData.data.role).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.addressResponse).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.addressResponse.city).to.be.an('String');\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://dev-gateway-api.bynfor.com/auth/user/{{BynforCustomerId}}",
+									"protocol": "https",
+									"host": [
+										"dev-gateway-api",
+										"bynfor",
+										"com"
+									],
+									"path": [
+										"auth",
+										"user",
+										"{{BynforCustomerId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Individual",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Send message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.redPacket).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.redPacket.redPacketGrabbedUsers).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.images).to.be.null;\r",
+											"    pm.expect(jsonData.data.profilePictureUrl).to.be.an('String');\r",
+											"    pm.expect(jsonData.data.fromUserId).to.be.an('number');\r",
+											"    pm.expect(jsonData.data.edited).to.be.an('Boolean');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fromUserId\": 1691,\r\n  \"toUserId\": 13846,\r\n  \"message\": \"U2FsdGVkX19QY9Xecem10V5fooZD0+GKsd4rng0rv+Y=\",\r\n  \"messageType\": 1,\r\n  \"newMessage\": \"U2FsdGVkX1/bQr310qgk8GROtaPbrL7fQMA20tXneXc=\",\r\n  \"from\": \"bynfor2000\",\r\n  \"firstName\": \"test88888\",\r\n  \"lastName\": \"bynfo11\",\r\n  \"profilePictureUrl\": \"https://sftp.bynfor.com/bynfor/auth/user_profiles/996521_original_2022-Ducati.webp\",\r\n  \"campaign\": null,\r\n  \"qrCodes\": null,\r\n  \"images\": null,\r\n  \"quoteId\": null,\r\n  \"files\": null,\r\n  \"videos\": null,\r\n  \"audios\": null,\r\n  \"messageId\": \"LL33W0Q5SAS48\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hide conversation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.hiddenChats).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.users).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.users[0]).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an('String');\r",
+											"    pm.expect(jsonData.data.__v).to.be.an('number');\r",
+											"    pm.expect(jsonData.data.users[0]._id).to.be.an('String');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"createdBy\": 1691,\r\n\t\"chatId\": 13846\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/remark/hide-conversation",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"remark",
+										"hide-conversation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count search",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"customerId\",'3');"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.have.property(\"success\", true);\r",
+											"    pm.expect(jsonData).to.have.property(\"data\").that.is.an(\"array\");\r",
+											"\r",
+											"    for (const item of jsonData.data) {\r",
+											"        pm.expect(item).to.have.property(\"_id\").that.is.a(\"string\");\r",
+											"        pm.expect(item).to.have.property(\"createdAt\").that.is.a(\"string\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"text\":\"aa\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/between-user/find/{{userId}}/{{customerId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"between-user",
+										"find",
+										"{{userId}}",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add and remove star",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"isAdd\":true,\"msgId\":\"64c9fe6afbe5f32601a4198b\",\"userId\":1691}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/add-star",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"add-star"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get messages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/individual/paging/{{userId}}/{{BynforCustomerId}}?pageSize=30&documentDays=30&encrypt=true",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"individual",
+										"paging",
+										"{{userId}}",
+										"{{BynforCustomerId}}"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "30"
+										},
+										{
+											"key": "documentDays",
+											"value": "30"
+										},
+										{
+											"key": "encrypt",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get gallery",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('array');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/between-user-gallery/{{userId}}/{{BynforCustomerId}}?type=MEDIA&pageNumber=1&pageSize=30",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"between-user-gallery",
+										"{{userId}}",
+										"{{BynforCustomerId}}"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "MEDIA"
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clear Chat",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"userId\",'1691');\r",
+											"pm.environment.set(\"customerId\",\"3\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/between-user-delete/{{userId}}/{{customerId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"between-user-delete",
+										"{{userId}}",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get search",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response contains 'success' and 'data' properties\", function () {\r",
+											"    pm.expect(jsonData).to.have.property(\"success\", true);\r",
+											"    pm.expect(jsonData).to.have.property(\"data\").that.is.an(\"array\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Each item in the data array has the expected structure\", function () {\r",
+											"    for (const item of jsonData.data) {\r",
+											"        pm.expect(item).to.have.property(\"_id\").that.is.a(\"string\");\r",
+											"        pm.expect(item).to.have.property(\"readByReceiver\").that.is.a(\"boolean\");\r",
+											"        pm.expect(item).to.have.property(\"messageType\").that.is.a(\"number\");\r",
+											"        pm.expect(item).to.have.property(\"edited\").that.is.a(\"boolean\");\r",
+											"       \r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/individual-search/{{userId}}/{{customerId}}?encrypt=true&createdAt=2022-02-18T16:31:17.004Z&limit=30",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"individual-search",
+										"{{userId}}",
+										"{{customerId}}"
+									],
+									"query": [
+										{
+											"key": "encrypt",
+											"value": "true"
+										},
+										{
+											"key": "createdAt",
+											"value": "2022-02-18T16:31:17.004Z"
+										},
+										{
+											"key": "limit",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count Star",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"groupId\",\"62da2603839ac5d0a9661536\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.a('number');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/count-group-star/{{userId}}/{{groupId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"count-group-star",
+										"{{userId}}",
+										"{{groupId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Like",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status string is OK\", function (){\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Full Response Body Check\", function (){\r",
+											"    pm.expect(jsonData).to.be.an('object');\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.messageType).to.be.a('number');\r",
+											"    pm.expect(jsonData.data.deleteMember).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.images).to.be.a('null');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('string');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fromUserId\": 4612,\r\n    \"toUserId\": 3,\r\n    \"message\": \"U2FsdGVkX19x5yaR+JHIpWTRolu1t4w9WhuTZMMNOXcEEjXjk9nfjWVZIaJAfyZy19aLvgoovhmoirUpUB62EuBkM1sNuD8KZXVt65s+ohhl3AuK7IFv8pQEhp16VoDWHoFPEM2Js7LfGAJQmwNQOg==\",\r\n    \"messageType\": 1,\r\n    \"emojiOnMessageArray\": [\r\n        {\r\n            \"emojiOnMessage\": \"😀\"\r\n        }\r\n    ],\r\n    \"reactBy\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/updateEmoji/{{messageId}}?decrypt=true",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"updateEmoji",
+										"{{messageId}}"
+									],
+									"query": [
+										{
+											"key": "decrypt",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Report message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an('object');\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.messageType).to.be.a('number');\r",
+											"    pm.expect(jsonData.data.deleteMember).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.images).to.be.a('null');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('string');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reported\": true,\r\n    \"reportedMessage\": \"Abuse|⁑Ry Bui|⁑2023-08-14T01:52:18.899Z|⁑64d988d23cb3687e05f7d714|⁑1\",\r\n    \"reporter\": {\r\n        \"userId\": 3,\r\n        \"firstName\": \"Customer\",\r\n        \"lastName\": \"No01\",\r\n        \"profilePictureUrl\": \"https://sftp.bynfor.com/bynfor/auth/user_profiles/260719_original_download3.webp\"\r\n    },\r\n    \"isNotificationRead\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://realtime-db.bynfor.com/message/{{messageId}}?decrypt=true",
+									"protocol": "https",
+									"host": [
+										"realtime-db",
+										"bynfor",
+										"com"
+									],
+									"path": [
+										"message",
+										"{{messageId}}"
+									],
+									"query": [
+										{
+											"key": "decrypt",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", ()=>{\r",
+											"    pm.expect(jsonData).to.be.an('object');\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    // pm.expect(jsonData.data).to.be.an('object');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/{{MessageID}}/{{userId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"{{MessageID}}",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Group",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Send message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.redPacket).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.data.fromUserId).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.groupId).to.be.an(\"string\");\r",
+											"    \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fromUserId\": 1691,\r\n  \"groupId\": \"64d258526bbbcd95faaedd9f\",\r\n  \"message\": \"U2FsdGVkX1+Kb5WTpTu8GEaNQ7w8g9lwX6ZgpzpzP+o=\",\r\n  \"messageType\": 1,\r\n  \"firstName\": \"test88888\",\r\n  \"lastName\": \"bynfo11\",\r\n  \"profilePictureUrl\": \"https://sftp.bynfor.com/bynfor/auth/user_profiles/996521_original_2022-Ducati.webp\",\r\n  \"newMessage\": \"U2FsdGVkX1+MY6FGsv3TN0KnCHOF6HLfmwM5y9obyWc=\",\r\n  \"from\": \"bynfor2000\",\r\n  \"title\": \"\",\r\n  \"campaign\": null,\r\n  \"qrCodes\": null,\r\n  \"images\": null,\r\n  \"quoteId\": null,\r\n  \"files\": null,\r\n  \"videos\": null,\r\n  \"audios\": null,\r\n  \"messageId\": \"LL368SUJ4XUKU\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hide conversation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"Object\");\r",
+											"    pm.expect(jsonData.data.hiddenChats).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data.createdBy).to.be.an(\"number\");\r",
+											"    pm.expect(jsonData.data.createdAt).to.be.an(\"string\");\r",
+											"    \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"createdBy\":1691,\"chatId\":\"62ddfffa380fd55f444edff5\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/remark/hide-conversation",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"remark",
+										"hide-conversation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count search",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.data[0]._id).to.be.an(\"string\");\r",
+											"    pm.expect(jsonData.data[1].createdAt).to.be.an(\"string\");\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"text\":\"hi\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/group-messages/find/{{userId}}/{{groupId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"group-messages",
+										"find",
+										"{{userId}}",
+										"{{groupId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add and remove star",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an(\"string\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"isAdd\":true,\"msgId\":\"64b0feaf437f8627c092e154\",\"userId\":1691}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/add-star",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"add-star"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get group information",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.members).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.createdBy).to.be.a('number');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('String');\r",
+											"    \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/group/64d258526bbbcd95faaedd9f?userId=1691",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"group",
+										"64d258526bbbcd95faaedd9f"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1691"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get messages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.list).to.be.an('array');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/group/paging/1691/64d258526bbbcd95faaedd9f?pageSize=30&documentDays=30&encrypt=true",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"group",
+										"paging",
+										"1691",
+										"64d258526bbbcd95faaedd9f"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "30"
+										},
+										{
+											"key": "documentDays",
+											"value": "30"
+										},
+										{
+											"key": "encrypt",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get gallery",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('array');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/between-user-gallery/1691/13846?type=MEDIA&pageNumber=1&pageSize=30",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"between-user-gallery",
+										"1691",
+										"13846"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "MEDIA"
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clear chat",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('array');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/group-clear/1691/64d258526bbbcd95faaedd9f",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"group-clear",
+										"1691",
+										"64d258526bbbcd95faaedd9f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get search",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('array');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/individual-search/1691/3?encrypt=true&createdAt=2022-02-18T16:31:17.004Z&limit=30",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"individual-search",
+										"1691",
+										"3"
+									],
+									"query": [
+										{
+											"key": "encrypt",
+											"value": "true"
+										},
+										{
+											"key": "createdAt",
+											"value": "2022-02-18T16:31:17.004Z"
+										},
+										{
+											"key": "limit",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Count star",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('number');\r",
+											"    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/count-group-star/1691/{{groupId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"count-group-star",
+										"1691",
+										"{{groupId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Like",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function (){\r",
+											"    pm.expect(jsonData).to.be.an('object');\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.messageType).to.be.a('number');\r",
+											"    pm.expect(jsonData.data.deleteMember).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.images).to.be.a('null');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('string');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fromUserId\": 1691,\r\n    \"groupId\": \"64d258526bbbcd95faaedd9f\",\r\n    \"messageType\": 1,\r\n    \"message\": \"U2FsdGVkX1+Dh/UCHssIPuJ/4IktKeL/wMvUzLCx03L5W/06/LymWqOH/zhBCz5Xtccr0bfq2J5hS+fD5wkmEA==\",\r\n    \"firstName\": \"test88888\",\r\n    \"lastName\": \"Nam\",\r\n    \"profilePictureUrl\": \"https://sftp.bynfor.com/bynfor/auth/user_profiles/996521_thumbnail_2022-Ducati.webp\",\r\n    \"emojiOnGroupArray\": [\r\n        {\r\n            \"fromUserId\": 3,\r\n            \"name\": \"Customer\",\r\n            \"emojiOnGroup\": \"😀\",\r\n            \"profilePictureUrl\": \"https://sftp.bynfor.com/bynfor/auth/user_profiles/260719_original_download3.webp\"\r\n        }\r\n    ],\r\n    \"reactBy\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/updateGroupEmoji/{{messageId}}?decrypt=true",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"updateGroupEmoji",
+										"{{messageId}}"
+									],
+									"query": [
+										{
+											"key": "decrypt",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Report message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function(){\r",
+											"    pm.expect(jsonData).to.be.an('object');\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.messageType).to.be.a('number');\r",
+											"    pm.expect(jsonData.data.deleteMember).to.be.an('array');\r",
+											"    pm.expect(jsonData.data.images).to.be.a('null');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('string');\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reported\": true,\r\n    \"reportedMessage\": \"Abuse|⁑New Register|⁑2023-07-14T08:24:55.861Z|⁑64b10657437f865a3594de4b|⁑1\",\r\n    \"reporter\": {\r\n        \"userId\": 1691,\r\n        \"firstName\": \"test88888\",\r\n        \"lastName\": \"bynfo11\",\r\n        \"profilePictureUrl\": \"https://sftp.bynfor.com/bynfor/auth/user_profiles/996521_original_2022-Ducati.webp\"\r\n    },\r\n    \"isNotificationRead\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/message/{{messageId}}?decrypt=true",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"{{messageId}}"
+									],
+									"query": [
+										{
+											"key": "decrypt",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add member",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('Boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.members).to.be.an('array');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('string');\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[13846]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bynfor}}/group/add-members/{{groupId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"group",
+										"add-members",
+										"{{groupId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove member",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", function () {\r",
+											"    pm.expect(jsonData).to.be.an(\"object\");\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    pm.expect(jsonData.data).to.be.an('object');\r",
+											"    pm.expect(jsonData.data.members).to.be.an('array');\r",
+											"    pm.expect(jsonData.data._id).to.be.a('string');\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/group/{{groupID}}/5/{{userId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"group",
+										"{{groupID}}",
+										"5",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete message",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Status String is OK\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"pm.test(\"Full Response Body Check\", ()=>{\r",
+											"    pm.expect(jsonData).to.be.an('object');\r",
+											"    pm.expect(jsonData.success).to.be.a('boolean');\r",
+											"    // pm.expect(jsonData.data).to.be.an('object');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJjdXN0b21lcjEiLCJzY29wZSI6WyJjdXN0b21lcmZyb250ZW5kIiwid2ViY2xpZW50Il0sImV4cCI6MTcyNDUwODc3NiwiYXV0aG9yaXRpZXMiOlsiQ1VTVE9NRVIiXSwianRpIjoiMDZkMzYyZmEtMGE0ZC00NTYzLWJjM2QtM2QxNjdkMTk5MjU4IiwiY2xpZW50X2lkIjoiand0Y2xpZW50IiwiVXNlclRva2VuIjp7ImlkIjozLCJ1c2VybmFtZSI6ImN1c3RvbWVyMSIsInBhc3N3b3JkIjoiNWU4ODQ4OThkYTI4MDQ3MTUxZDBlNTZmOGRjNjI5Mjc3MzYwM2QwZDZhYWJiZGQ2MmExMWVmNzIxZDE1NDJkOCIsImZpcnN0bmFtZSI6IkN1c3RvbWVyIiwibGFzdG5hbWUiOiJObzAxIiwibWVyY2hhbnQiOnsiaWQiOjEsInBob25lIjpudWxsLCJlbWFpbCI6bnVsbCwic3RvcmVOYW1lIjpudWxsLCJzdG9yZUNvZGUiOm51bGx9LCJjb3VudHJ5TmFtZSI6IkFsZ2VyaWEiLCJ1c2VyQ3JlYXRlZERhdGUiOjE1NzU1NTE0MDAwMDAsInByb2ZpbGVJbWdVcmwiOiJodHRwczovL3NmdHAuYnluZm9yLmNvbS9ieW5mb3IvYXV0aC91c2VyX3Byb2ZpbGVzLzI2MDcxOV9vcmlnaW5hbF9kb3dubG9hZDMud2VicCIsInJhdGluZ3MiOjMuNSwiamlkIjoiY3VzdG9tZXIxQHhhbXBwLmJ5bmZvci5jb20iLCJvcGVuZmlyZVBhc3N3b3JkIjoiMTIzNDU2YUAifX0.TGKw_uzrJuB2WSPTs4SbIq9ndXnnW2KDIBPRMbH43Mg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{bynfor}}/message/{{MessageID}}/{{userId}}",
+									"host": [
+										"{{bynfor}}"
+									],
+									"path": [
+										"message",
+										"{{MessageID}}",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
